@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 public class CreateGrid : MonoBehaviour{
@@ -83,19 +82,19 @@ public class CreateGrid : MonoBehaviour{
     public void SaveMap(){
         Save save = CreateNewMapSave();
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.dataPath + "/Resources/SavedMap.save");
+        FileStream file = File.Create(Application.dataPath + "/SavedMaps/SavedMap.save");
         bf.Serialize(file, save);
         file.Close();
         Debug.Log("Game Saved!");
     }
     public void LoadSavedMap(){
         
-        if (File.Exists(Application.dataPath + "/Resources/SavedMap.save")){
+        if (File.Exists(Application.dataPath + "/SavedMaps/SavedMap.save")){
             foreach (Transform child in this.transform){
                 Destroy(child.gameObject);
             }
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.dataPath + "/Resources/SavedMap.save", FileMode.Open);
+            FileStream file = File.Open(Application.dataPath + "/SavedMaps/SavedMap.save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
             for (int i = 0; i < save.xPositions.Count; i++){
