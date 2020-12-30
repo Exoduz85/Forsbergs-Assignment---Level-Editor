@@ -1,18 +1,23 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+[Serializable]
+public class ColorEvent : UnityEvent<Color>{ }
 
 public class ColorPicker : MonoBehaviour{
     public GameObject selectedTile;
     public GameObject grassTile;
     public GameObject waterTile;
+    public GameObject gridView;
     public RectTransform rect;
     public Texture2D colorTexture;
     public Image colorPicker;
     public Image previewColorImage;
     public Color color;
+
+    public ColorEvent OnColorPreview;
+    public ColorEvent OnColorSelect;
     void Start()
     {
         colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
@@ -36,7 +41,10 @@ public class ColorPicker : MonoBehaviour{
         Vector2 localMousePosition = rect.InverseTransformPoint(Input.mousePosition);
 
         if (rect.rect.Contains(localMousePosition)){
-            previewColorImage.material.color = color;
+            OnColorPreview?.Invoke(color);
+            if (Input.GetMouseButtonDown(0)){
+                OnColorSelect?.Invoke(color);
+            }
         }
     }
 
@@ -45,5 +53,10 @@ public class ColorPicker : MonoBehaviour{
     }
     public void SelectWaterTile(){
         selectedTile = waterTile;
+    }
+
+    public void CloseWindow(){
+        this.transform.gameObject.SetActive(false);
+        gridView.SetActive(true);
     }
 }

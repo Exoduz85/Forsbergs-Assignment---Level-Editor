@@ -12,6 +12,7 @@ public class CreateGrid : MonoBehaviour{
     public GameObject grassTile;
     public GameObject waterTile;
     private GameObject drawTile;
+    public GameObject editTileWindow;
     void Start(){
         this.gridArray = new int[xSize,ySize];
         PopulateGrid();
@@ -43,7 +44,7 @@ public class CreateGrid : MonoBehaviour{
         for (int x = 0; x < gridArray.GetLength(0); x++){
             for (int y = 0; y < gridArray.GetLength(1); y++){
                 Vector3 positionToSpawn = new Vector3(x * gridOffset, y * gridOffset) + gridOrigin;
-                    if (x > gridArray.GetLength(0) * 0.5f - 5&& x < gridArray.GetLength(0) * 0.5f + 5 &&
+                    if (x > gridArray.GetLength(0) * 0.5f - 5 && x < gridArray.GetLength(0) * 0.5f + 5 &&
                     y > gridArray.GetLength(1) * 0.5f - 5 && y < gridArray.GetLength(1) * 0.5f + 5)
                         SpawnClone(positionToSpawn, Quaternion.identity, starterTile, starterTile.name);
                     else 
@@ -107,8 +108,8 @@ public class CreateGrid : MonoBehaviour{
         }
         else Debug.Log("No map saved!");
     }
-
     public void EditExistingTileType(){
-        // Edit the existing tiles colors and names..
+        editTileWindow.SetActive(true);
+        this.transform.gameObject.SetActive(false);
     }
 }
