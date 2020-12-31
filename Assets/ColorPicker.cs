@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class ColorEvent : UnityEvent<Color>{ }
 
 public class ColorPicker : MonoBehaviour{
-    public GameObject selectedTile;
+    public GameObject SelectedTile;
     public GameObject grassTile;
     public GameObject waterTile;
     public GameObject gridView;
     public RectTransform rect;
-    public Texture2D colorTexture;
+    private Texture2D colorTexture;
     public Image colorPicker;
-    public Image previewColorImage;
     public Color color;
 
     public ColorEvent OnColorPreview;
@@ -49,10 +48,14 @@ public class ColorPicker : MonoBehaviour{
     }
 
     public void SelectGrassTile(){
-        selectedTile = grassTile;
+        SelectedTile = grassTile;
     }
     public void SelectWaterTile(){
-        selectedTile = waterTile;
+        SelectedTile = waterTile;
+    }
+
+    public void ChangeColor(){
+        SelectedTile.gameObject.GetComponent<Renderer>().sharedMaterial.color = color;
     }
 
     public void CloseWindow(){

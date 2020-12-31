@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 public class CreateGrid : MonoBehaviour{
     public int ySize;
@@ -14,9 +15,12 @@ public class CreateGrid : MonoBehaviour{
     private GameObject drawTile;
     public GameObject editTileWindow;
     void Start(){
-        this.gridArray = new int[xSize,ySize];
+        Grid grid = new Grid(xSize, ySize, gridOffset, this.transform);
+        grid.CreateGrid();
+        grid.PopulateGrid();
+        /*this.gridArray = new int[xSize,ySize];
         PopulateGrid();
-        this.transform.position = new Vector3(xSize * -0.5f, ySize * -0.5f, 0);
+        this.transform.position = new Vector3(xSize * -0.5f, ySize * -0.5f, 0);*/
     }
     private void Update(){
         if (Input.GetMouseButtonDown(0)){
@@ -40,18 +44,20 @@ public class CreateGrid : MonoBehaviour{
             }
         }
     }
-    void PopulateGrid(){
+    /*void PopulateGrid(){
         for (int x = 0; x < gridArray.GetLength(0); x++){
             for (int y = 0; y < gridArray.GetLength(1); y++){
                 Vector3 positionToSpawn = new Vector3(x * gridOffset, y * gridOffset) + gridOrigin;
-                    if (x > gridArray.GetLength(0) * 0.5f - 5 && x < gridArray.GetLength(0) * 0.5f + 5 &&
+                Tile tile = new Tile("Water", positionToSpawn, Color.blue, this.transform);
+                tile.CreateTile();
+                    /*if (x > gridArray.GetLength(0) * 0.5f - 5 && x < gridArray.GetLength(0) * 0.5f + 5 &&
                     y > gridArray.GetLength(1) * 0.5f - 5 && y < gridArray.GetLength(1) * 0.5f + 5)
                         SpawnClone(positionToSpawn, Quaternion.identity, starterTile, starterTile.name);
                     else 
-                        SpawnClone(positionToSpawn, Quaternion.identity, emptyTile, emptyTile.name);
+                        SpawnClone(positionToSpawn, Quaternion.identity, emptyTile, emptyTile.name);#1#
             }
         }
-    }
+    }*/
     private void SpawnClone(Vector3 positionToSpawn, Quaternion rotationToSpawn, GameObject prefabToSpawn, string name){
         GameObject clone = Instantiate(prefabToSpawn, positionToSpawn, rotationToSpawn);
         clone.transform.SetParent(this.transform);
@@ -68,7 +74,7 @@ public class CreateGrid : MonoBehaviour{
             Destroy(child.gameObject);
         }
         this.transform.position = Vector3.zero;
-        PopulateGrid();
+        //PopulateGrid();
         this.transform.position = new Vector3(xSize * -0.5f, ySize * -0.5f, 0);
     }
     private Save CreateNewMapSave(){

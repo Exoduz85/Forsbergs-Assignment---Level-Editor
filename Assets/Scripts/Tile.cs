@@ -1,17 +1,26 @@
 ﻿using UnityEngine;
 
 public class Tile{
-    public GameObject CreateTile(Color color, string name){
-        GameObject newTile = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        newTile.GetComponent<Renderer>().material.color = color;
-        newTile.name = name;
-        return newTile;
-    }
-}
+    private string _name;
+    private Vector3 _position;
+    private Color _color;
+    private Transform _parent;
 
-public class foo : MonoBehaviour{
-    public void CreateNewTile(){
-        Tile tile = new Tile();
-        GameObject go = tile.CreateTile(Color.black, "test");
+    public Tile(string name, Vector3 position, Color color, Transform parent){
+        this._name = name;
+        this._position = position;
+        this._color = color;
+        this._parent = parent;
+    }
+
+    // method should maybe instead take the position, name, color and parent?
+    public void CreateTile(){
+        GameObject newTile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        newTile.transform.position = _position;
+        Material newMaterial = new Material(Shader.Find("Unlit/Color"));
+        newTile.gameObject.GetComponent<MeshRenderer>().material = newMaterial;
+        newMaterial.color = _color;
+        newTile.name = _name;
+        newTile.transform.parent = _parent;
     }
 }
