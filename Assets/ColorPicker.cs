@@ -4,18 +4,18 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 [Serializable]
 public class ColorEvent : UnityEvent<Color>{ }
-
-// TODO Redo this script so that it can work with the new tile and grip script.
 public class ColorPicker : MonoBehaviour{
     public GameObject gridView;
     public RectTransform rect;
-    private Texture2D _colorTexture;
     public Image colorPicker;
     public Color color;
+    
+    private Texture2D _colorTexture;
     private string _tileType;
-    private Color _onButtonColor;
-    public ColorEvent OnColorPreview;
-    public ColorEvent OnColorSelect;
+    private Button _button;
+    
+    public ColorEvent onColorPreview;
+    public ColorEvent onColorSelect;
     void Start()
     {
         _colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
@@ -23,9 +23,9 @@ public class ColorPicker : MonoBehaviour{
     void Update(){
         Vector2 delta;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out delta);
-
-        float width = rect.rect.width;
-        float height = rect.rect.height;
+        var rect1 = rect.rect;
+        float width = rect1.width;
+        float height = rect1.height;
         delta += new Vector2(width * 0.5f, height * 0.5f);
         
         float x = Mathf.Clamp(delta.x / width, 0f, 1f);
@@ -39,27 +39,24 @@ public class ColorPicker : MonoBehaviour{
         Vector2 localMousePosition = rect.InverseTransformPoint(Input.mousePosition);
 
         if (rect.rect.Contains(localMousePosition)){
-            OnColorPreview?.Invoke(color);
+            onColorPreview?.Invoke(color);
             if (Input.GetMouseButtonDown(0)){
-                OnColorSelect?.Invoke(color);
+                onColorSelect?.Invoke(color);
             }
         }
     }
-    
     public void SelectTile(Button onClickButton){
         _tileType = onClickButton.name;
-        onClickButton.image.material.color = _onButtonColor;
+        _button = onClickButton;
     }
-
     public void ChangeColor(){
-        _onButtonColor = color; // need to change the buttons runtime color also.
+        _button.image.material.color = color; // need to change the buttons runtime color also.
         foreach (Transform child in gridView.transform){
             if (child.name == _tileType){
                 child.gameObject.GetComponent<Renderer>().material.color = color;
             }
         }
     }
-
     public void CloseWindow(){
         this.transform.gameObject.SetActive(false);
         gridView.SetActive(true);

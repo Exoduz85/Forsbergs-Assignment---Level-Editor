@@ -27,7 +27,13 @@ public class CreateGrid : MonoBehaviour{
             save.xPositions.Add(child.transform.position.x);
             save.yPositions.Add(child.transform.position.y);
             save.tileNames.Add(child.name);
-            save.tileColor.Add(child.gameObject.GetComponent<MeshRenderer>().material.color);
+            float[] colors = {
+                child.gameObject.GetComponent<Renderer>().material.color.r, 
+                child.gameObject.GetComponent<Renderer>().material.color.g,
+                child.gameObject.GetComponent<Renderer>().material.color.b,
+                child.gameObject.GetComponent<Renderer>().material.color.a
+            };
+            save.tileColor.Add(colors);
         }
         return save;
     }
@@ -52,7 +58,8 @@ public class CreateGrid : MonoBehaviour{
             for (int i = 0; i < save.xPositions.Count; i++){
                 Vector3 tilePosition = new Vector3(save.xPositions[i], save.yPositions[i], 0);
                 string tileName = save.tileNames[i];
-                Color color = save.tileColor[i];
+                float[] col = save.tileColor[i];
+                Color color = new Color(col[0], col[1],col[2],col[3]);
                 Tile tile = new Tile(tileName,tilePosition,color,this.transform);
                 tile.CreateTile();
             }

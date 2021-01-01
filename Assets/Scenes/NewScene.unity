@@ -1114,8 +1114,6 @@ MonoBehaviour:
   ySize: 10
   xSize: 10
   gridOffset: 1.1
-  grassTile: {fileID: 76502363327142129, guid: 126f345f5b4c842c9a3a6e8e470f57fd, type: 3}
-  waterTile: {fileID: 7164821587493167782, guid: a5a48376e77f545e4a3def27b372eb2c, type: 3}
   editTileWindow: {fileID: 1978412871}
 --- !u!4 &726938359
 Transform:
@@ -1847,11 +1845,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1978412875}
         m_TargetAssemblyTypeName: ColorPicker, Assembly-CSharp
-        m_MethodName: SelectWaterTile
-        m_Mode: 1
+        m_MethodName: SelectTile
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 894369745}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2674,11 +2672,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1978412875}
         m_TargetAssemblyTypeName: ColorPicker, Assembly-CSharp
-        m_MethodName: SelectGrassTile
-        m_Mode: 1
+        m_MethodName: SelectTile
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1830185475}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2896,14 +2894,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbe2d494c6424e9da5c779cebcb1af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedTile: {fileID: 0}
-  grassTile: {fileID: 76502363327142129, guid: 126f345f5b4c842c9a3a6e8e470f57fd, type: 3}
-  waterTile: {fileID: 7164821587493167782, guid: a5a48376e77f545e4a3def27b372eb2c, type: 3}
   gridView: {fileID: 726938357}
   rect: {fileID: 521066575}
   colorPicker: {fileID: 521066576}
   color: {r: 0, g: 0, b: 0, a: 0}
-  OnColorPreview:
+  onColorPreview:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 24120663}
@@ -2918,7 +2913,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnColorSelect:
+  onColorSelect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1978412875}
