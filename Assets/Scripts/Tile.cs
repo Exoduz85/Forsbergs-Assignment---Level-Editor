@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Tile{
+public class Tile{ // struct class?
     private string _name;
     private Vector3 _position;
     private Color _color;

@@ -23,8 +23,8 @@ public class Grid{
         for (int x = 0; x < _gridArray.GetLength(0); x++){
             for (int y = 0; y < _gridArray.GetLength(1); y++){
                 Vector3 positionToSpawn = new Vector3(x * _gridOffset, y * _gridOffset) + _gridOrigin;
-                Tile tile = new Tile("Grass", positionToSpawn, Color.green, _parent);
-                tile.CreateTile();
+                Tile grassTile = new Tile("Grass", positionToSpawn, Color.green, _parent);
+                grassTile.CreateTile();
             }
         }
     }

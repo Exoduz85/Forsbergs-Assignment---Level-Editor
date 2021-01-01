@@ -5,21 +5,20 @@ using UnityEngine.UI;
 [Serializable]
 public class ColorEvent : UnityEvent<Color>{ }
 
+// TODO Redo this script so that it can work with the new tile and grip script.
 public class ColorPicker : MonoBehaviour{
-    public GameObject SelectedTile;
-    public GameObject grassTile;
-    public GameObject waterTile;
     public GameObject gridView;
     public RectTransform rect;
-    private Texture2D colorTexture;
+    private Texture2D _colorTexture;
     public Image colorPicker;
     public Color color;
-
+    private string _tileType;
+    private Color _onButtonColor;
     public ColorEvent OnColorPreview;
     public ColorEvent OnColorSelect;
     void Start()
     {
-        colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
+        _colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
     }
     void Update(){
         Vector2 delta;
@@ -32,10 +31,10 @@ public class ColorPicker : MonoBehaviour{
         float x = Mathf.Clamp(delta.x / width, 0f, 1f);
         float y = Mathf.Clamp(delta.y / height, 0f, 1f);
 
-        int textureX = Mathf.RoundToInt(x * colorTexture.width);
-        int textureY = Mathf.RoundToInt(y * colorTexture.height);
+        int textureX = Mathf.RoundToInt(x * _colorTexture.width);
+        int textureY = Mathf.RoundToInt(y * _colorTexture.height);
         
-        color = colorTexture.GetPixel(textureX, textureY);
+        color = _colorTexture.GetPixel(textureX, textureY);
         
         Vector2 localMousePosition = rect.InverseTransformPoint(Input.mousePosition);
 
@@ -46,16 +45,19 @@ public class ColorPicker : MonoBehaviour{
             }
         }
     }
-
-    public void SelectGrassTile(){
-        SelectedTile = grassTile;
-    }
-    public void SelectWaterTile(){
-        SelectedTile = waterTile;
+    
+    public void SelectTile(Button onClickButton){
+        _tileType = onClickButton.name;
+        onClickButton.image.material.color = _onButtonColor;
     }
 
     public void ChangeColor(){
-        SelectedTile.gameObject.GetComponent<Renderer>().sharedMaterial.color = color;
+        _onButtonColor = color; // need to change the buttons runtime color also.
+        foreach (Transform child in gridView.transform){
+            if (child.name == _tileType){
+                child.gameObject.GetComponent<Renderer>().material.color = color;
+            }
+        }
     }
 
     public void CloseWindow(){
