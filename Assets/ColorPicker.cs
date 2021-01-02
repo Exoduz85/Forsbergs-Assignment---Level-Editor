@@ -9,16 +9,19 @@ public class ColorPicker : MonoBehaviour{
     public RectTransform rect;
     public Image colorPicker;
     public Color color;
+    public InputField _inputField;
     
     private Texture2D _colorTexture;
     private string _tileType;
     private Button _button;
+    private string _newTileName;
     
     public ColorEvent onColorPreview;
     public ColorEvent onColorSelect;
     void Start()
     {
         _colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
+        _inputField.onEndEdit.AddListener(delegate{LockInput(_inputField);});
     }
     void Update(){
         Vector2 delta;
@@ -49,16 +52,35 @@ public class ColorPicker : MonoBehaviour{
         _tileType = onClickButton.name;
         _button = onClickButton;
     }
+
     public void ChangeColor(){
-        _button.image.material.color = color; // need to change the buttons runtime color also.
-        foreach (Transform child in gridView.transform){
-            if (child.name == _tileType){
-                child.gameObject.GetComponent<Renderer>().material.color = color;
+        if (_button != null){
+            _button.image.color = color; // need to change the buttons runtime color also.
+            foreach (Transform child in gridView.transform){
+                if (child.name == _tileType){
+                    child.gameObject.GetComponent<Renderer>().material.color = color;
+                }
             }
         }
     }
+
     public void CloseWindow(){
         this.transform.gameObject.SetActive(false);
         gridView.SetActive(true);
+    }
+
+    void LockInput(InputField input){
+        if (_button != null){
+            if (input.text.Length > 0){
+                _newTileName = input.text;
+                _button.GetComponentInChildren<Text>().text = _newTileName;
+                foreach (Transform child in gridView.transform){
+                    child.name = _newTileName;
+                }
+            }
+            else if (input.text.Length == 0){
+                Debug.Log("Main Input Empty");
+            }
+        }
     }
 }
