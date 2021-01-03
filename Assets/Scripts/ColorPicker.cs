@@ -14,6 +14,7 @@ public class ColorPicker : MonoBehaviour{
     private Texture2D _colorTexture;
     private string _tileType;
     private Button _button;
+    private Button _mainButton;
     private string _newTileName;
     
     public ColorEvent onColorPreview;
@@ -55,7 +56,7 @@ public class ColorPicker : MonoBehaviour{
 
     public void ChangeColor(){
         if (_button != null){
-            _button.image.color = color; // need to change the buttons runtime color also.
+            _button.image.color = color;
             foreach (Transform child in gridView.transform){
                 if (child.name == _tileType){
                     child.gameObject.GetComponent<Renderer>().material.color = color;
