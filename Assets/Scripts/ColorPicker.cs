@@ -9,12 +9,11 @@ public class ColorPicker : MonoBehaviour{
     public RectTransform rect;
     public Image colorPicker;
     public Color color;
-    public InputField _inputField;
+    public InputField inputField;
     
     private Texture2D _colorTexture;
     private string _tileType;
     private Button _button;
-    private Button _mainButton;
     private string _newTileName;
     
     public ColorEvent onColorPreview;
@@ -22,7 +21,7 @@ public class ColorPicker : MonoBehaviour{
     void Start()
     {
         _colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
-        _inputField.onEndEdit.AddListener(delegate{LockInput(_inputField);});
+        inputField.onEndEdit.AddListener(delegate{LockInput(inputField);});
     }
     void Update(){
         Vector2 delta;
@@ -70,6 +69,7 @@ public class ColorPicker : MonoBehaviour{
         gridView.SetActive(true);
     }
 
+    //TODO fix so that the button object updates to their new name... and check for which placed tiles should change name...
     void LockInput(InputField input){
         if (_button != null){
             if (input.text.Length > 0){

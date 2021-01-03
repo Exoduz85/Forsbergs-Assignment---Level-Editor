@@ -12,8 +12,6 @@ public class Tile{ // struct class?
         this._color = color;
         this._parent = parent;
     }
-
-    // method should maybe instead take the position, name, color and parent?
     public void CreateTile(){
         GameObject newTile = GameObject.CreatePrimitive(PrimitiveType.Cube);
         newTile.transform.position = _position;

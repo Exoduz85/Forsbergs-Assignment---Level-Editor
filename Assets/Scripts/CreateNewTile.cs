@@ -7,7 +7,7 @@ public class CreateNewTile : MonoBehaviour{
     private Color buttonColor;
     public void CreateTile(Button onClickButton){
         TileType = onClickButton.name;
-        buttonColor = onClickButton.image.material.color;
+        buttonColor = onClickButton.image.color;
     }
     private void Update(){
         if (Input.GetMouseButtonDown(0)){
