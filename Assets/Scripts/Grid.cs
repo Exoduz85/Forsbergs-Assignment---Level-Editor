@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
 public class Grid{
-    private readonly int _width;
-    private readonly int _height;
+    private int _width;
+    private int _height;
     private int[,] _gridArray;
-    private readonly float _gridOffset;
-    private readonly Vector3 _gridOrigin = Vector3.zero;
-    private readonly Transform _parent;
+    private float _gridOffset;
+    private Vector3 _gridOrigin = Vector3.zero;
+    private Transform _parent;
 
     public Grid(int width, int height, float gridOffset, Transform parent){
         this._width = width;
