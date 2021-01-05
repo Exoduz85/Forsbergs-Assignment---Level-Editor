@@ -6,6 +6,7 @@ public class CreateGrid : MonoBehaviour{
     public int xSize;
     public float gridOffset = 1f;
     public GameObject editTileWindow;
+    public TileType tileType;
     void Start(){
         Grid grid = new Grid(xSize, ySize, gridOffset, this.transform);
         grid.CreateGrid();
@@ -60,7 +61,7 @@ public class CreateGrid : MonoBehaviour{
                 string tileName = save.tileNames[i];
                 float[] col = save.tileColor[i];
                 Color color = new Color(col[0], col[1],col[2],col[3]);
-                Tile tile = new Tile(tileName,tilePosition,color,this.transform);
+                Tile tile = new Tile(tilePosition, this.transform, tileType);
                 tile.CreateTile();
             }
             Debug.Log("Map loaded!");

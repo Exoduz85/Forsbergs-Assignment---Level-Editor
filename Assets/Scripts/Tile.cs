@@ -1,24 +1,20 @@
 ﻿using UnityEngine;
 
-public class Tile{ // struct class?
-    private string _name;
+public class Tile{
     private Vector3 _position;
-    private Color _color;
     private Transform _parent;
+    private readonly TileType _tileType;
 
-    public Tile(string name, Vector3 position, Color color, Transform parent){
-        this._name = name;
+    public Tile(Vector3 position, Transform parent, TileType tileType){
         this._position = position;
-        this._color = color;
         this._parent = parent;
+        _tileType = tileType;
     }
     public void CreateTile(){
-        GameObject newTile = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        newTile.transform.position = _position;
-        Material newMaterial = new Material(Shader.Find("Unlit/Color"));
-        newTile.gameObject.GetComponent<MeshRenderer>().material = newMaterial;
-        newMaterial.color = _color;
-        newTile.name = _name;
-        newTile.transform.parent = _parent;
+        GameObject newTile = Resources.Load("DefaultTile", typeof(GameObject)) as GameObject;
+        var tile = GameObject.Instantiate(newTile, _position, Quaternion.identity);
+        tile.GetComponent<SpriteRenderer>().color = _tileType._color;
+        tile.name = _tileType._name;
+        tile.transform.parent = _parent;
     }
 }

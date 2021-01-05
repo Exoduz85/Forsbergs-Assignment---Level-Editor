@@ -7,7 +7,6 @@ public class Grid{
     private float _gridOffset;
     private Vector3 _gridOrigin = Vector3.zero;
     private Transform _parent;
-
     public Grid(int width, int height, float gridOffset, Transform parent){
         this._width = width;
         this._height = height;
@@ -21,7 +20,8 @@ public class Grid{
         for (int x = 0; x < _gridArray.GetLength(0); x++){
             for (int y = 0; y < _gridArray.GetLength(1); y++){
                 Vector3 positionToSpawn = new Vector3(x * _gridOffset, y * _gridOffset) + _gridOrigin;
-                Tile grassTile = new Tile("Grass", positionToSpawn, Color.green, _parent);
+                TileType grass = new TileType(Color.green, "Grass", _parent);
+                Tile grassTile = new Tile(positionToSpawn, _parent, grass);
                 grassTile.CreateTile();
             }
         }
