@@ -26,4 +26,10 @@ public class TileType{
         this.parent = parent;
         return this;
     }
+    public TileType ReturnEmptyType(Transform parent){
+        this.color = Color.clear;
+        this.name = "Empty";
+        this.parent = parent;
+        return this;
+    }
 }

@@ -7,8 +7,9 @@ public class CreateGrid : MonoBehaviour{
     public float gridOffset = 1f;
     public GameObject editTileWindow;
     public TileType tileType;
+    public Grid grid;
     void Start(){
-        Grid grid = new Grid(xSize, ySize, gridOffset, this.transform);
+        grid = new Grid(xSize, ySize, gridOffset, this.transform);
         grid.CreateGrid();
         grid.PopulateGrid();
     }
@@ -16,8 +17,6 @@ public class CreateGrid : MonoBehaviour{
         foreach (Transform child in this.transform){
             Destroy(child.gameObject);
         }
-        Grid grid = new Grid(xSize,ySize,gridOffset,this.transform);
-        grid.CreateGrid();
         grid.PopulateGrid();
     }
     

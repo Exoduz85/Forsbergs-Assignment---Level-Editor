@@ -1269,9 +1269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14f87f687e4d46bcb9659b0844ba8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ySize: 10
-  xSize: 10
-  gridOffset: 1.1
+  ySize: 20
+  xSize: 20
+  gridOffset: 1.05
   editTileWindow: {fileID: 1978412871}
 --- !u!4 &726938359
 Transform:
