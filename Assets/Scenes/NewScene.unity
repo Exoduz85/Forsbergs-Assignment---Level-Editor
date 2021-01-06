@@ -514,7 +514,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726938358}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
         m_MethodName: LoadSavedMap
         m_Mode: 1
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726938360}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CreateNewTile, Assembly-CSharp
         m_MethodName: CreateTile
         m_Mode: 2
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726938358}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
         m_MethodName: SaveMap
         m_Mode: 1
@@ -1248,8 +1248,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 726938359}
-  - component: {fileID: 726938358}
   - component: {fileID: 726938360}
+  - component: {fileID: 726938358}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1266,13 +1266,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 726938357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14f87f687e4d46bcb9659b0844ba8e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9683318b5becd427eae818e39223fbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ySize: 20
-  xSize: 20
-  gridOffset: 1.05
-  editTileWindow: {fileID: 1978412871}
 --- !u!4 &726938359
 Transform:
   m_ObjectHideFlags: 0
@@ -1296,9 +1292,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 726938357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115691df571d24a76bbf6d2266ce195e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bb344d9a734e4004821fd24cb877115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 1973559620851848417, guid: 4fd182f330d9d4b05beeaab45a81b948, type: 3}
+  TileTypeLib: {fileID: 726938358}
+  width: 10
+  height: 10
 --- !u!1 &727840808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726938358}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
         m_MethodName: EditExistingTileType
         m_Mode: 1
@@ -1671,7 +1671,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726938360}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CreateNewTile, Assembly-CSharp
         m_MethodName: CreateTile
         m_Mode: 2
@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726938358}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
         m_MethodName: ResetGrid
         m_Mode: 1

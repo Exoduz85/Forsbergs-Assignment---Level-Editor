@@ -5,9 +5,6 @@ public class CreateNewTile : MonoBehaviour{
 
     private TileType TileType;
     public void CreateTile(Button onClickButton){
-        TileType = new TileType(onClickButton.GetComponent<Image>().color, onClickButton.name, this.transform);
-        TileTypeLib selected = new TileTypeLib(); // how to work with this???
-        selected.Selected = TileType;
     }
     private void Update(){
         if (Input.GetMouseButtonDown(0)){
@@ -22,11 +19,7 @@ public class CreateNewTile : MonoBehaviour{
         RaycastHit hitPoint;
         if (Physics.Raycast(mouseRay, out hitPoint, 100f)){
             if (tileType != null){
-                if (tileType.name != hitPoint.collider.gameObject.name){
-                    Tile tile = new Tile(hitPoint.collider.transform.position, tileType.parent, tileType); 
-                    tile.CreateTile();
-                    Destroy(hitPoint.collider.gameObject);
-                }
+                Destroy(hitPoint.collider.gameObject);
             }
         }
     }

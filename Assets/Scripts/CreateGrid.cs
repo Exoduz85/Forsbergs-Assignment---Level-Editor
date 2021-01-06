@@ -7,17 +7,13 @@ public class CreateGrid : MonoBehaviour{
     public float gridOffset = 1f;
     public GameObject editTileWindow;
     public TileType tileType;
-    public Grid grid;
+    public TileGrid TileGrid;
     void Start(){
-        grid = new Grid(xSize, ySize, gridOffset, this.transform);
-        grid.CreateGrid();
-        grid.PopulateGrid();
     }
     public void ResetGrid(){
         foreach (Transform child in this.transform){
             Destroy(child.gameObject);
         }
-        grid.PopulateGrid();
     }
     
     // TODO fix the save and load, cant apparently serialize colors... load and save from the hex number?
@@ -60,8 +56,6 @@ public class CreateGrid : MonoBehaviour{
                 string tileName = save.tileNames[i];
                 float[] col = save.tileColor[i];
                 Color color = new Color(col[0], col[1],col[2],col[3]);
-                Tile tile = new Tile(tilePosition, this.transform, tileType);
-                tile.CreateTile();
             }
             Debug.Log("Map loaded!");
         }
