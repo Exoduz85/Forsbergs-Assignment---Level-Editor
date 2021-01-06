@@ -11,16 +11,16 @@ public class ColorPicker : MonoBehaviour{
     public Color color;
     public InputField inputField;
     
-    private Texture2D _colorTexture;
-    private string _tileType;
-    private Button _button;
-    private string _newTileName;
+    private Texture2D colorTexture;
+    private string tileType;
+    private Button button;
+    private string newTileName;
     
     public ColorEvent onColorPreview;
     public ColorEvent onColorSelect;
     void Start()
     {
-        _colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
+        colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
         inputField.onEndEdit.AddListener(delegate{LockInput(inputField);});
     }
     void Update(){
@@ -34,10 +34,10 @@ public class ColorPicker : MonoBehaviour{
         float x = Mathf.Clamp(delta.x / width, 0f, 1f);
         float y = Mathf.Clamp(delta.y / height, 0f, 1f);
 
-        int textureX = Mathf.RoundToInt(x * _colorTexture.width);
-        int textureY = Mathf.RoundToInt(y * _colorTexture.height);
+        int textureX = Mathf.RoundToInt(x * colorTexture.width);
+        int textureY = Mathf.RoundToInt(y * colorTexture.height);
         
-        color = _colorTexture.GetPixel(textureX, textureY);
+        color = colorTexture.GetPixel(textureX, textureY);
         
         Vector2 localMousePosition = rect.InverseTransformPoint(Input.mousePosition);
 
@@ -49,21 +49,20 @@ public class ColorPicker : MonoBehaviour{
         }
     }
     public void SelectTile(Button onClickButton){
-        _tileType = onClickButton.name;
-        _button = onClickButton;
+        tileType = onClickButton.name;
+        button = onClickButton;
     }
 
     public void ChangeColor(){
-        if (_button != null){
-            _button.image.color = color;
+        if (button != null){
+            button.image.color = color;
             foreach (Transform child in gridView.transform){
-                if (child.name == _tileType){
+                if (child.name == tileType){
                     child.gameObject.GetComponent<Renderer>().material.color = color;
                 }
             }
         }
     }
-
     public void CloseWindow(){
         this.transform.gameObject.SetActive(false);
         gridView.SetActive(true);
@@ -71,12 +70,12 @@ public class ColorPicker : MonoBehaviour{
 
     //TODO fix so that the button object updates to their new name... and check for which placed tiles should change name...
     void LockInput(InputField input){
-        if (_button != null){
+        if (button != null){
             if (input.text.Length > 0){
-                _newTileName = input.text;
-                _button.GetComponentInChildren<Text>().text = _newTileName;
+                newTileName = input.text;
+                button.GetComponentInChildren<Text>().text = newTileName;
                 foreach (Transform child in gridView.transform){
-                    child.name = _newTileName;
+                    child.name = newTileName;
                 }
             }
             else if (input.text.Length == 0){

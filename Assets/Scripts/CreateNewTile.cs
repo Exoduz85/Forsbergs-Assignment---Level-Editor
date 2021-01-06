@@ -22,8 +22,8 @@ public class CreateNewTile : MonoBehaviour{
         RaycastHit hitPoint;
         if (Physics.Raycast(mouseRay, out hitPoint, 100f)){
             if (tileType != null){
-                if (tileType._name != hitPoint.collider.gameObject.name){
-                    Tile tile = new Tile(hitPoint.collider.transform.position, tileType._parent, tileType); 
+                if (tileType.name != hitPoint.collider.gameObject.name){
+                    Tile tile = new Tile(hitPoint.collider.transform.position, tileType.parent, tileType); 
                     tile.CreateTile();
                     Destroy(hitPoint.collider.gameObject);
                 }

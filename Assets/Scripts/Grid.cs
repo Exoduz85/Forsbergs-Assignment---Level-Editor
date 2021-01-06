@@ -20,7 +20,9 @@ public class Grid{
         for (int x = 0; x < _gridArray.GetLength(0); x++){
             for (int y = 0; y < _gridArray.GetLength(1); y++){
                 Vector3 positionToSpawn = new Vector3(x * _gridOffset, y * _gridOffset) + _gridOrigin;
-                TileType grass = new TileType(Color.green, "Grass", _parent);
+                //TileType grass = new TileType(Color.green, "Grass", _parent);
+                TileType grass = new TileType();
+                grass.ReturnGrassType(this._parent);
                 Tile grassTile = new Tile(positionToSpawn, _parent, grass);
                 grassTile.CreateTile();
             }

@@ -1,12 +1,29 @@
 ﻿using UnityEngine;
 public class TileType{
-    public Color _color;
-    public string _name;
-    public Transform _parent;
+    public Color color;
+    public string name;
+    public Transform parent;
 
     public TileType(Color color, string name, Transform parent){
-        this._color = color;
-        this._name = name;
-        this._parent = parent;
+        this.color = color;
+        this.name = name;
+        this.parent = parent;
+    }
+
+    public TileType(){
+        
+    }
+
+    public TileType ReturnGrassType(Transform parent){
+        this.color = Color.green;
+        this.name = "Grass";
+        this.parent = parent;
+        return this;
+    }
+    public TileType ReturnWaterType(Transform parent){
+        this.color = Color.blue;
+        this.name = "Water";
+        this.parent = parent;
+        return this;
     }
 }
