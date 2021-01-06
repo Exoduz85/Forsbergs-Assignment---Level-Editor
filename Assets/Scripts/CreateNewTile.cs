@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class CreateNewTile : MonoBehaviour{
 
-    private TileType TileType;
-    public void CreateTile(Button onClickButton){
-    }
+    private TileType tileType;
+    private TileTypeLib tileTypeLib;
+    
     private void Update(){
         if (Input.GetMouseButtonDown(0)){
-            PlaceTile(TileType);
+            PlaceTile(tileType);
         }
         if (Input.GetMouseButton(1)){
-            PlaceTile(TileType);
+            PlaceTile(tileType);
         }
     }
     private void PlaceTile(TileType tileType){
