@@ -1039,6 +1039,7 @@ GameObject:
   - component: {fileID: 726938359}
   - component: {fileID: 726938360}
   - component: {fileID: 726938358}
+  - component: {fileID: 726938361}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1089,6 +1090,19 @@ MonoBehaviour:
   width: 10
   height: 10
   offset: 1.1
+--- !u!114 &726938361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726938357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6438c44f083da4cb4bb2c0973835e8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editTileWindow: {fileID: 1978412871}
 --- !u!1 &754518323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,8 +1264,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
+      - m_Target: {fileID: 726938361}
+        m_TargetAssemblyTypeName: EditTiles, Assembly-CSharp
         m_MethodName: EditExistingTileType
         m_Mode: 1
         m_Arguments:
@@ -2588,7 +2602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1978412872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2688,10 +2702,10 @@ MonoBehaviour:
   onColorSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ColorPicker, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 726938360}
+        m_TargetAssemblyTypeName: TileGrid, Assembly-CSharp
+        m_MethodName: EditTileTypeColor
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

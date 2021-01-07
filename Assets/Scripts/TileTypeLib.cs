@@ -30,8 +30,7 @@ public class TileTypeLib : MonoBehaviour{
         this.TileTypes.Add(this.Default);
     }
 
-    void EditTileType(string name, Color color){
-        this.Selected.name = name;
+    /*public void EditTileTypeColor(Color color){
         this.Selected.color = color;
-    }
+    }*/
 }
