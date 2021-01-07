@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TileTypeLib : MonoBehaviour{
@@ -12,7 +13,6 @@ public class TileTypeLib : MonoBehaviour{
         this.TileTypes.Add(new TileType("Grass", Color.green));
         this.TileTypes.Add(new TileType("Water", Color.blue));
         this.TileTypes.Add(new TileType("Clear", Color.clear));
-        this.TileTypes.Add(new TileType("Default", Color.white));
         SetDefaultTile();
     }
     public TileType GetByName(string name){
@@ -25,9 +25,13 @@ public class TileTypeLib : MonoBehaviour{
     public void SetSelectedType(string name){
         this.Selected = this.GetByName(name);
     }
-
     void SetDefaultTile(){
         this.Default = new TileType("Default", Color.white);
         this.TileTypes.Add(this.Default);
+    }
+
+    void EditTileType(string name, Color color){
+        this.Selected.name = name;
+        this.Selected.color = color;
     }
 }

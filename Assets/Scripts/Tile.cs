@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Tile : MonoBehaviour{
-    private TileType tileType;
+    public TileType tileType;
     public void SetPosition(float x, float y){
         this.transform.position = new Vector3(x, y);
     }

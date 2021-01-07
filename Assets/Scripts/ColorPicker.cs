@@ -12,9 +12,7 @@ public class ColorPicker : MonoBehaviour{
     public InputField inputField;
     
     private Texture2D colorTexture;
-    private string tileType;
-    private Button button;
-    private string newTileName;
+    private Button button; // needs to be set when clicking which tiletype to change..
     
     public ColorEvent onColorPreview;
     public ColorEvent onColorSelect;
@@ -48,35 +46,14 @@ public class ColorPicker : MonoBehaviour{
             }
         }
     }
-    public void SelectTile(Button onClickButton){
-        tileType = onClickButton.name;
-        button = onClickButton;
-    }
-
-    public void ChangeColor(){
-        if (button != null){
-            button.image.color = color;
-            foreach (Transform child in gridView.transform){
-                if (child.name == tileType){
-                    child.gameObject.GetComponent<Renderer>().material.color = color;
-                }
-            }
-        }
-    }
     public void CloseWindow(){
         this.transform.gameObject.SetActive(false);
         gridView.SetActive(true);
     }
-
-    //TODO fix so that the button object updates to their new name... and check for which placed tiles should change name...
     void LockInput(InputField input){
         if (button != null){
             if (input.text.Length > 0){
-                newTileName = input.text;
-                button.GetComponentInChildren<Text>().text = newTileName;
-                foreach (Transform child in gridView.transform){
-                    child.name = newTileName;
-                }
+                button.GetComponentInChildren<Text>().text = input.text;
             }
             else if (input.text.Length == 0){
                 Debug.Log("Main Input Empty");
