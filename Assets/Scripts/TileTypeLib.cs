@@ -12,13 +12,22 @@ public class TileTypeLib : MonoBehaviour{
         this.TileTypes.Add(new TileType("Grass", Color.green));
         this.TileTypes.Add(new TileType("Water", Color.blue));
         this.TileTypes.Add(new TileType("Clear", Color.clear));
+        this.TileTypes.Add(new TileType("Default", Color.white));
+        SetDefaultTile();
     }
     public TileType GetByName(string name){
         var match = TileTypes.Find(x => x.name.Contains(name));
+        if (match == null){
+            return this.Default;
+        }
         return match;
     }
-
     public void SetSelectedType(string name){
         this.Selected = this.GetByName(name);
+    }
+
+    void SetDefaultTile(){
+        this.Default = new TileType("Default", Color.white);
+        this.TileTypes.Add(this.Default);
     }
 }
