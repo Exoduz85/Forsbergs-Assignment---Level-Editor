@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268f758173fc045b7b92c85ac3959b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 0
   screenWidth: 0
   screenHeight: 0
 --- !u!20 &519420031
@@ -2685,6 +2685,7 @@ MonoBehaviour:
   colorPicker: {fileID: 521066576}
   color: {r: 0, g: 0, b: 0, a: 0}
   inputField: {fileID: 1763492488}
+  tileTypeLib: {fileID: 0}
   onColorPreview:
     m_PersistentCalls:
       m_Calls:

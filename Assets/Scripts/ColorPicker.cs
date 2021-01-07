@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 [Serializable]
 public class ColorEvent : UnityEvent<Color>{ }
@@ -12,16 +13,19 @@ public class ColorPicker : MonoBehaviour{
     public InputField inputField;
     
     private Texture2D colorTexture;
-    private TileTypeLib tileTypeLib;
+    public TileTypeLib tileTypeLib;
     
     public ColorEvent onColorPreview;
     public ColorEvent onColorSelect;
-    void Start()
-    {
-        tileTypeLib = FindObjectOfType<TileTypeLib>();
+    void Start(){
+        tileTypeLib = gridView.GetComponent<TileTypeLib>();
         colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
+    }
+
+    private void OnEnable(){
         inputField.onEndEdit.AddListener(delegate{LockInput(inputField);});
     }
+
     void Update(){
         Vector2 delta;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out delta);
@@ -52,7 +56,7 @@ public class ColorPicker : MonoBehaviour{
         gridView.SetActive(true);
     }
     void LockInput(InputField input){
-        if (tileTypeLib.associatedButton != null){
+        if (tileTypeLib.associatedButton != null){ // why the fuck does this throw an exception????
             if (input.text.Length > 0){
                 tileTypeLib.associatedButton.GetComponentInChildren<Text>().text = input.text;
             }

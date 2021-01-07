@@ -4,12 +4,15 @@ using UnityEngine.UI;
 
 public class Painter : MonoBehaviour
 {
-    private TileTypeLib tileTypeLib;
+    public TileTypeLib tileTypeLib;
     private void Start(){
         this.transform.name = this.transform.name.Replace("(Clone)", "");
         tileTypeLib = FindObjectOfType<TileTypeLib>();
+    }
+    private void OnEnable(){
         this.transform.gameObject.GetComponent<Button>().onClick.AddListener(SetCorrectTileType);
     }
+
     public void SetCorrectTileType(){
         tileTypeLib.SetSelectedType(this.name, this.transform.gameObject.GetComponent<Button>());
     }

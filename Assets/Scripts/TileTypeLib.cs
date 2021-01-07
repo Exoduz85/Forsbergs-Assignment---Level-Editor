@@ -27,6 +27,7 @@ public class TileTypeLib : MonoBehaviour{
     public void SetSelectedType(string name, Button button){
         this.Selected = this.GetByName(name);
         this.associatedButton = button;
+        Debug.Log("Heyooo");
     }
     void SetDefaultTile(){
         this.Default = new TileType("Default", Color.white);
