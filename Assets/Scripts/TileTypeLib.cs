@@ -17,4 +17,8 @@ public class TileTypeLib : MonoBehaviour{
         var match = TileTypes.Find(x => x.name.Contains(name));
         return match;
     }
+
+    public void SetSelectedType(string name){
+        this.Selected = this.GetByName(name);
+    }
 }
