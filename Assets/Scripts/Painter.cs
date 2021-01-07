@@ -11,7 +11,7 @@ public class Painter : MonoBehaviour
         this.transform.gameObject.GetComponent<Button>().onClick.AddListener(SetCorrectTileType);
     }
     public void SetCorrectTileType(){
-        tileTypeLib.SetSelectedType(this.name);
+        tileTypeLib.SetSelectedType(this.name, this.transform.gameObject.GetComponent<Button>());
     }
     private void Update(){
         if (Input.GetMouseButtonDown(0)){

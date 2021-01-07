@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileTypeLib : MonoBehaviour{
     public TileType Selected;
     public TileType Default;
     public TileType[] All;
+    public Button associatedButton;
     private List<TileType> TileTypes;
     private void Awake(){
         // make playerprefs save for this with json serialize and deserialize
@@ -22,15 +24,12 @@ public class TileTypeLib : MonoBehaviour{
         }
         return match;
     }
-    public void SetSelectedType(string name){
+    public void SetSelectedType(string name, Button button){
         this.Selected = this.GetByName(name);
+        this.associatedButton = button;
     }
     void SetDefaultTile(){
         this.Default = new TileType("Default", Color.white);
         this.TileTypes.Add(this.Default);
     }
-
-    /*public void EditTileTypeColor(Color color){
-        this.Selected.color = color;
-    }*/
 }

@@ -12,12 +12,13 @@ public class ColorPicker : MonoBehaviour{
     public InputField inputField;
     
     private Texture2D colorTexture;
-    private Button button; // needs to be set when clicking which tiletype to change..
+    private TileTypeLib tileTypeLib;
     
     public ColorEvent onColorPreview;
     public ColorEvent onColorSelect;
     void Start()
     {
+        tileTypeLib = FindObjectOfType<TileTypeLib>();
         colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
         inputField.onEndEdit.AddListener(delegate{LockInput(inputField);});
     }
@@ -51,9 +52,9 @@ public class ColorPicker : MonoBehaviour{
         gridView.SetActive(true);
     }
     void LockInput(InputField input){
-        if (button != null){
+        if (tileTypeLib.associatedButton != null){
             if (input.text.Length > 0){
-                button.GetComponentInChildren<Text>().text = input.text;
+                tileTypeLib.associatedButton.GetComponentInChildren<Text>().text = input.text;
             }
             else if (input.text.Length == 0){
                 Debug.Log("Main Input Empty");

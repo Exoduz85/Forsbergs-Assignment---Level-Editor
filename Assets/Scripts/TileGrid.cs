@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileGrid : MonoBehaviour{
     private Tile[,] tiles;
@@ -21,6 +22,7 @@ public class TileGrid : MonoBehaviour{
     }
     public void EditTileTypeColor(Color color){
         this.TileTypeLib.Selected.color = color;
+        this.TileTypeLib.associatedButton.GetComponent<Image>().color = color;
         ChangeExistingTiles();
     }
 
