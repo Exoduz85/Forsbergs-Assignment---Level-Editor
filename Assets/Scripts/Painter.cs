@@ -28,8 +28,10 @@ public class Painter : MonoBehaviour
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitPoint;
         if (Physics.Raycast(mouseRay, out hitPoint, 100f)){
-            if (hitPoint.collider.gameObject.GetComponent<Tile>()){
-                hitPoint.collider.gameObject.GetComponent<Tile>().SetTileType(tileTypeLib.Selected);
+            if (tileTypeLib.Selected != null){
+                if (hitPoint.collider.gameObject.GetComponent<Tile>()){
+                    hitPoint.collider.gameObject.GetComponent<Tile>().SetTileType(tileTypeLib.Selected);
+                }
             }
         }
     }
