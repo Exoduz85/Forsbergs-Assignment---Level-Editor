@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TileGrid : MonoBehaviour{
@@ -9,7 +8,6 @@ public class TileGrid : MonoBehaviour{
     public int width;
     public int height;
     public float offset;
-
     private void Awake(){
         this.tiles = new Tile[width,height];
         for (int x = 0; x < this.width; x++){
@@ -25,7 +23,6 @@ public class TileGrid : MonoBehaviour{
         this.TileTypeLib.associatedButton.GetComponent<Image>().color = color;
         ChangeExistingTiles();
     }
-
     void ChangeExistingTiles(){
         foreach (var tile in this.tiles){
             if (tile.name == this.TileTypeLib.Selected.name){
