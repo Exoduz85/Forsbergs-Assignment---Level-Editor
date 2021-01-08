@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
 public class Tile : MonoBehaviour{
-    public TileType tileType;
+    private TileType TileType;
     public void SetPosition(float x, float y){
         this.transform.position = new Vector3(x, y);
     }
     public void SetTileType(TileType tileType){
-        this.tileType = tileType;
-        this.transform.GetComponent<SpriteRenderer>().color = this.tileType.color;
-        this.transform.name = this.tileType.name;
+        this.TileType = tileType;
+        this.transform.GetComponent<SpriteRenderer>().color = this.TileType.color;
+        this.transform.name = this.TileType.name;
     }
 }

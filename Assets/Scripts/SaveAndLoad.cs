@@ -1,22 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-public class CreateGrid : MonoBehaviour{
-    public int ySize;
-    public int xSize;
-    public float gridOffset = 1f;
-    public GameObject editTileWindow;
-    public TileType tileType;
-    public TileGrid TileGrid;
-    void Start(){
-    }
-    public void ResetGrid(){
-        foreach (Transform child in this.transform){
-            Destroy(child.gameObject);
-        }
-    }
-    
-    // TODO fix the save and load, cant apparently serialize colors... load and save from the hex number?
+public class SaveAndLoad : MonoBehaviour{ 
     private Save CreateNewMapSave(){
         Save save = new Save();
         foreach (Transform child in this.transform){
@@ -60,9 +45,5 @@ public class CreateGrid : MonoBehaviour{
             Debug.Log("Map loaded!");
         }
         else Debug.Log("No map saved!");
-    }
-    public void EditExistingTileType(){
-        editTileWindow.SetActive(true);
-        this.transform.gameObject.SetActive(false);
     }
 }

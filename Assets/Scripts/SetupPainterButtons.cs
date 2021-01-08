@@ -19,7 +19,6 @@ public class SetupPainterButtons : MonoBehaviour{
         tileTypePrefabButtons.Add(instance);
         UpdatePainterButtons();
     }
-
     void UpdatePainterButtons(){
         var length = tileTypePrefabButtons.Count - 1;
         var zero = 0;
