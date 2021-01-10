@@ -436,12 +436,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
-        m_MethodName: LoadSavedMap
-        m_Mode: 1
+        m_TargetAssemblyTypeName: CreateGrid
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -900,12 +900,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
-        m_MethodName: SaveMap
-        m_Mode: 1
+        m_TargetAssemblyTypeName: CreateGrid
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1059,7 +1059,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9683318b5becd427eae818e39223fbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Selected:
+    color: {r: 0, g: 0, b: 0, a: 0}
+    name: 
+  Default:
+    color: {r: 0, g: 0, b: 0, a: 0}
+    name: 
+  All: []
   associatedButton: {fileID: 0}
+  tileTypes: []
 --- !u!4 &726938359
 Transform:
   m_ObjectHideFlags: 0
@@ -1596,12 +1604,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateGrid, Assembly-CSharp
-        m_MethodName: ResetGrid
-        m_Mode: 1
+        m_TargetAssemblyTypeName: CreateGrid
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1900,11 +1908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd234d313c208469f8793ba51ca2a995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTypePrefabButtons:
-  - {fileID: 2205565855104314881, guid: fc7df90a3ec894a3a97f387a350f922f, type: 3}
-  - {fileID: 2205565855104314881, guid: 7ca1ed0bc37f7435381185292d1c0f05, type: 3}
-  tileTypePrefabButton: {fileID: 2205565855104314881, guid: 5bad2160b2e85463a88c6d3ef799d214, type: 3}
+  PainterButtons: []
   parent: {fileID: 1259149970}
+  grid: {fileID: 726938359}
 --- !u!1 &1430517477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,11 +2388,11 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_CaretColor: {r: 0, g: 0.17926908, b: 1, a: 1}
-  m_CustomCaretColor: 1
+  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
-  m_CaretBlinkRate: 0.99
+  m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
 --- !u!114 &1763492489
@@ -2685,7 +2691,6 @@ MonoBehaviour:
   colorPicker: {fileID: 521066576}
   color: {r: 0, g: 0, b: 0, a: 0}
   inputField: {fileID: 1763492488}
-  tileTypeLib: {fileID: 0}
   onColorPreview:
     m_PersistentCalls:
       m_Calls:

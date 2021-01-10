@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-
+[System.Serializable]
 public class Tile : MonoBehaviour{
-    private TileType TileType;
+    public TileType TileType;
     public void SetPosition(float x, float y){
         this.transform.position = new Vector3(x, y);
     }

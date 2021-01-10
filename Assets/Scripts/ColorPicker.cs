@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-[Serializable]
+[System.Serializable]
 public class ColorEvent : UnityEvent<Color>{ }
 public class ColorPicker : MonoBehaviour{
     public GameObject gridView;
@@ -13,19 +11,19 @@ public class ColorPicker : MonoBehaviour{
     public InputField inputField;
     
     private Texture2D colorTexture;
-    public TileTypeLib tileTypeLib;
+    private TileTypeLib tileTypeLib;
+    private SetupPainterButtons painterButtons;
     
     public ColorEvent onColorPreview;
     public ColorEvent onColorSelect;
     void Start(){
         tileTypeLib = gridView.GetComponent<TileTypeLib>();
         colorTexture = colorPicker.GetComponent<Image>().mainTexture as Texture2D;
+        painterButtons = GetComponentInParent<SetupPainterButtons>();
     }
-
     private void OnEnable(){
         inputField.onEndEdit.AddListener(delegate{LockInput(inputField);});
     }
-
     void Update(){
         Vector2 delta;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out delta);
@@ -48,6 +46,8 @@ public class ColorPicker : MonoBehaviour{
             onColorPreview?.Invoke(color);
             if (Input.GetMouseButtonDown(0)){
                 onColorSelect?.Invoke(color);
+                painterButtons.ChangeExistingPainterButtonColor(
+                    painterButtons.GetByName(tileTypeLib.associatedButton.gameObject.name), color);
             }
         }
     }
@@ -56,9 +56,14 @@ public class ColorPicker : MonoBehaviour{
         gridView.SetActive(true);
     }
     void LockInput(InputField input){
-        if (tileTypeLib.associatedButton != null){ // why the fuck does this throw an exception????
+        if (tileTypeLib.associatedButton != null){
             if (input.text.Length > 0){
+                painterButtons.ChangeExistingPainterButtonName(
+                    painterButtons.GetByName(tileTypeLib.associatedButton.gameObject.name), input.text);
                 tileTypeLib.associatedButton.GetComponentInChildren<Text>().text = input.text;
+                tileTypeLib.associatedButton.gameObject.name = input.text;
+                tileTypeLib.Selected.name = input.text;
+                gridView.GetComponent<TileGrid>().ChangeExistingTiles();
             }
             else if (input.text.Length == 0){
                 Debug.Log("Main Input Empty");

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 public class TileGrid : MonoBehaviour{
     private Tile[,] tiles;
     public Tile tilePrefab;
@@ -23,9 +22,9 @@ public class TileGrid : MonoBehaviour{
         this.TileTypeLib.associatedButton.GetComponent<Image>().color = color;
         ChangeExistingTiles();
     }
-    void ChangeExistingTiles(){
+    public void ChangeExistingTiles(){
         foreach (var tile in this.tiles){
-            if (tile.name == this.TileTypeLib.Selected.name){
+            if (tile.TileType == this.TileTypeLib.Selected){
                 tile.SetTileType(this.TileTypeLib.Selected);
             }
         }

@@ -6,7 +6,6 @@ public class Painter : MonoBehaviour
 {
     public TileTypeLib tileTypeLib;
     private void Start(){
-        this.transform.name = this.transform.name.Replace("(Clone)", "");
         tileTypeLib = FindObjectOfType<TileTypeLib>();
     }
     private void OnEnable(){

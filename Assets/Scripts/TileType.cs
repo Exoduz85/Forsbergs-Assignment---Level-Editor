@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+[System.Serializable]
 public class TileType{
     public Color color;
     public string name;
