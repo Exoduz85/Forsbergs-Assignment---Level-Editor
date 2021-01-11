@@ -55,13 +55,13 @@ public class SetupPainterButtons : MonoBehaviour{
         return match;
     }
     public void ChangeExistingPainterButtonColor(PainterButton painterButton, Color color){
-        grid.GetComponent<TileTypeLib>().RecolorTileType(painterButton, color); //null because grid is set to inactive.
+        grid.GetComponent<TileTypeLib>().RecolorTileType(painterButton, color);
         PainterButtons.Remove(PainterButtons.Find(x => x.name.Contains(painterButton.name)));
         painterButton.buttonColor = color;
         PainterButtons.Add(painterButton);
     }
     public void ChangeExistingPainterButtonName(PainterButton painterButton, string name){
-        grid.GetComponent<TileTypeLib>().RenameTileType(painterButton, name); //null because grid is set to inactive.
+        grid.GetComponent<TileTypeLib>().RenameTileType(painterButton, name);
         PainterButtons.Remove(PainterButtons.Find(x => x.name.Contains(painterButton.name)));
         painterButton.name = name;
         painterButton.displayText = name;
